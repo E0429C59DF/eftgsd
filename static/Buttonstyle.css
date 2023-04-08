@@ -1,0 +1,30 @@
+#beitrag-form{
+    background-color: #004fe4;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 69px;
+    right: 28px;
+    width: 280px;
+}
+ 
+
+#post_erstellen{
+    
+    padding: 10px;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+
+}
+#post_erstellen:hover{
+    color: #f6074a;
+    background-color: var(--clr-neon);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+    --clr-neon:  #004fe4;
+    border: var(--clr-neon) 0.125em solid;    
+    
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <title>Syp_Projekt</title>
+        <link href="{%static 'style2.css'%}" rel="stylesheet">
+        <link href="{%static 'Buttonstyle.css'%}" rel="stylesheet">
+        <script src="{%static 'beitrag_erstellen.js'%}"></script>
+    </head>
+    <body>
+      <header>
+        <nav id="main">
+            <div> <a href="" class="logo">Titel</a></div>
+            <div class="search-bar">
+              <input type="text" placeholder="Suche">
+              <button>Suchen</button>
+            </div>
+            <div class="profile">
+              <a href="login/" id="login">Login jetzt<a></a>
+            </div>
+          </nav>
+        <nav id="main-search">
+          <a class="main-item" href="">Lehrer</a>
+          <a class="main-item" href="">Fächer</a>
+          <a class="main-item" href="">Abteilungen</a> 
+        </nav>
+        
+        {% for item in all %}
+            <strong>{{ item.titel }} <br/> </strong>
+            {{ item.beitrag }}<br/>
+            <hr>-
+        {% endfor %}
+        
+
+      </header>
+      <input id="post_erstellen" type="submit" value="Beitrag erstellen">
+      <div id="beitrag-overlay"></div>
+      <div id="beitrag-form">
+        <form method="POST">
+          <div>
+            {{ beitrag_form.titel }}
+          </div>
+          <div>
+            {{ beitrag_form.beitrag }}
+          </div>
+          {%csrf_token%}
+          <div>
+            <input type="submit" value="Posten">
+            <input id="Abbrechen" type="submit" value="Abbrechen">
+          </div>
+        </form>
+        
+      </div>
+    
+
+      <script>
+        document.getElementById('post_erstellen').addEventListener('click', function(event){
+          var overlay = document.getElementById('beitrag-overlay');
+          var form = document.getElementById('beitrag-form');
+          overlay.style.display='block';
+          form.style.display='block';
+        });
+      </script>
+    </body>
+</html>
