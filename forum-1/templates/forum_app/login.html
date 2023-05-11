@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <title>Syp_Projekt</title>
+        <link href="{%static 'login-style2.css'%}" rel="stylesheet">
+    </head>
+    <body>
+      <header>
+        <nav id="main">
+            <div> <a href="{% url 'index' %}" class="logo">Titel</a></div>
+            <div class="search-bar">
+              <input type="text" placeholder="Suche">
+              <button>Suchen</button>
+            </div>
+            <div class="profile">
+            </div>
+          </nav>
+        <nav id="main-search">
+          <a class="main-item" href="">Lehrer</a>
+          <a class="main-item" href="">Fächer</a>
+          <a class="main-item" href="">Klassen</a>
+        </nav>
+      </header>
+      <div class="login-window">
+        <form method="POST"  class="login-form">
+          {%csrf_token%}
+          <input class="input" type="text" name="username" placeholder="Username">
+
+          <input class="input" type="password" name="password" placeholder="password">
+
+          <p class="question">Noch nicht Registriert? Hier <a href="{% url 'register' %}">klicken</a> zum Registrieren</p>
+
+          <input id="login-form-input" type="submit" value="Login">
+        </form>
+      </div>
+      
+    </body>
+</html>

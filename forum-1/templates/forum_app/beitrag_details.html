@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <title>Syp_Projekt</title>
+        <link href="{%static 'style2.css'%}" rel="stylesheet">
+    </head>
+    <body>
+      <header>
+        <nav id="main">
+            <div> <a href="" class="logo">Titel</a></div>
+            <div class="search-bar">
+              <input type="text" placeholder="Suche">
+              <button>Suchen</button>
+            </div>
+            <div class="profile">
+              {% if user.is_authenticated %}
+                <a class="login" href="{% url 'logout' %}">Logout</a>
+              {%else%}
+              <a href="{% url 'login' %}" class="login">Login jetzt<a></a>
+              {%endif%}
+            </div>
+          </nav>
+        <nav id="main-search">
+          <a class="main-item" href="">Lehrer</a>
+          <a class="main-item" href="">Fächer</a>
+          <a class="main-item" href="">Abteilungen</a> 
+        </nav>
+      </header> 
+
+  <strong><h1> {{  beitrag.titel }} </h1></strong>
+    {{ beitrag.beitrag }}<br/><br/>
+    <hr>
+    <h2> Kommentare </h2><br/>
+  {% for comment in beitrag.comments.all %}
+    <strong>{{ comment.author }}</strong>
+    <br/>
+    {{ comment.body }}<hr>
+    <br/>
+    {% endfor %}
+
+   
+
+    {% block content %}
+    
+    <div class="column">
+        {% for comment in beitrag.comments.all %}
+                <div class="box">
+                    {{comments.body}}
+                    <span class="is-small has-text-grey-light">
+                        ({{ comment.body }} by {{ comment.author }}
+                    </span>
+                </div>
+        {% endfor %}
+    </div>
+    
+    <div class="column is-one-third">
+        {{ form.as_p }}
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="button is-success is-fullwidth is-medium mt-5"
+              type="submit">Kommentieren
+      </button>
+  </form>
+    
+    {% endblock content %}
+
+
+</body>
+</html>
